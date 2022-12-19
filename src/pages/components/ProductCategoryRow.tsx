@@ -1,5 +1,11 @@
-const ProductCategoryRow = () => {
-  return <div>ProductCategoryRow</div>;
+import React from "react";
+
+const ProductCategoryRow = ({ category }: { category: string }) => {
+  return (
+    <tr>
+      <th colSpan={2}>{category}</th>
+    </tr>
+  );
 };
 
 export default ProductCategoryRow;

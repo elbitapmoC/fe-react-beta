@@ -1,3 +1,6 @@
+import ProductCategoryRow from "./ProductCategoryRow";
+import ProductRow from "./ProductRow";
+
 interface Produce {
   category: string;
   price: string;
@@ -7,28 +10,31 @@ interface Produce {
 
 const ProductTable = ({ products }: { products: Produce[] }) => {
   const rows: any = [];
-  const lastCategory: any = null;
+  let lastCategory: any = null;
 
-  products.forEach((product: Produce) => {
-    // category: 'Fruits', price: '$1', stocked: true, name: 'Apple'
-    console.log(product);
-    return <></>;
+  products.forEach(({ category, price, stocked, name }: Produce) => {
+    if (category !== lastCategory) {
+      rows.push(<ProductCategoryRow category={category} key={category} />);
+    }
+    rows.push(
+      <ProductRow price={price} stocked={stocked} name={name} key={name} />
+    );
+    lastCategory = category;
   });
 
   return (
-    <table className="mt-10">
-      <thead>
-        <tr className="flex gap-4">
-          <th>Name</th>
-          <th>Price</th>
+    <table className="m-auto w-2/4 text-center text-sm text-gray-500">
+      <thead className="bg-gray-50 text-xs uppercase text-gray-700 ">
+        <tr>
+          <th scope="col" className="py-3 px-6">
+            Name
+          </th>
+          <th scope="col" className="py-3 px-6">
+            Price
+          </th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          {rows}
-          <td>a</td>
-        </tr>
-      </tbody>
+      <tbody>{rows}</tbody>
     </table>
   );
 };

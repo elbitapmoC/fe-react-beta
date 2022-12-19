@@ -1,6 +1,6 @@
 const CheckBox = () => {
   return (
-    <div className="mt-2 flex">
+    <div className="mt-2 mb-10 flex">
       <div className="flex h-5 items-center">
         <input
           id="helper-checkbox"
